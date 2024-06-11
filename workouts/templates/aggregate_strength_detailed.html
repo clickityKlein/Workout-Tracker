@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Detailed Aggregate Strength Data</h1>
+    </div>
+    
+    <br>
+    <div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Workout ID</th>
+                <th>User ID</th>
+                <th>Workout Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Exercise</th>
+                <th>Weight</th>
+                <th>Metric</th>
+                <th>Repetitions</th>
+                <th>Set Number</th>
+                <th>Order In Set</th>
+                <th>Notes</th>
+                <th>Exercise Count</th>
+                <th>Set Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exercise_set in strength_training_data %}
+            <tr>
+                <td><a href="{{url_for('strength_training.single_strength_workout', strength_workout_id=exercise_set.sub_id, strength_user_id=exercise_set.user_id)}}">{{ exercise_set.sub_id }}</a></td>
+                <td><a href="{{url_for('strength_training.view_strength_workout_table', strength_user_id=exercise_set.user_id)}}">{{  exercise_set.user_id }}</a></td>
+                <td>{{ exercise_set.workout_name }}</td>
+                <td>{{ exercise_set.date }}</td>
+                <td>{{ exercise_set.location }}</td>
+                <td>{{ exercise_set.exercise }}</td>
+                <td>{{ exercise_set.weight }}</td>
+                <td>{{ exercise_set.metric }}</td>
+                <td>{{ exercise_set.repetitions }}</td>
+                <td>{{ exercise_set.set_number }}</td>
+                <td>{{ exercise_set.order_in_set }}</td>
+                <td>{{ exercise_set.notes }}</td>
+                <td>{{ exercise_set.exercise_count }}</td>
+                <td>{{ exercise_set.set_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
+
+<!-- Dynamic Table Options -->
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable();
+        });
+    </script>
+{% endblock %}

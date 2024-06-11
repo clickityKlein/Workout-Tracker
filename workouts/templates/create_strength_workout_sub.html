@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<h1>Create Strength Workout</h1>
+</div>
+
+<br>
+
+    <div class="container">
+    <div id="outer" style="display: flex; justify-content: center;">
+    <div id="inner" style="width: 60%;">
+    <div class="form-group p-3 mb-2 bg-body-secondary rounded">
+        <form class='form-group' method='POST'>
+            {{form.hidden_tag()}}
+            <div class='form-group'>
+            {{form.workout_name.label(class="form-control-label")}}
+            {{form.workout_name(class="form-control text-bg-light p-3")}}
+            </div>
+            <br>
+            <div class='form-group'>
+            {{form.date.label(class="form-control-label")}}
+            {{form.date(class="form-control text-bg-light p-3", type="date")}}
+            </div>
+            <br>
+            <div class='form-group'>
+            {{form.location.label(class="form-control-label")}}
+            {{form.location(class="form-control text-bg-light p-3")}}
+            </div>
+            <br>
+            <div class='form-group'>
+            {{form.exercise_count.label(class="form-control-label")}}
+            {{form.exercise_count(class="form-control text-bg-light p-3")}}
+            </div>
+            <br>
+            <div class='form-group'>
+            {{form.set_count.label(class="form-control-label")}}
+            {{form.set_count(class="form-control text-bg-light p-3")}}
+            </div>
+            <br>
+            <div class='form-group d-grid gap-2 col-6 mx-auto'>
+            {{form.submit(class="btn btn-primary")}}
+            </div>
+        </form>
+    </div>
+    </div>  
+    </div>
+    </div>
+{% endblock %}

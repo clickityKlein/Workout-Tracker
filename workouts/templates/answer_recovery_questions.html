@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Account Recovery</h1>
+    </div>
+    
+    {% if get_flashed_messages()|length > 0 %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+    {% for message in get_flashed_messages() %}
+        <strong>{{message}}</strong>
+    {% endfor %}
+
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <br>
+    
+    <div id="outer" style="display: flex; justify-content: center;">
+    <div id="inner" style="width: 60%;">
+    <div class="form-group p-3 mb-2 bg-body-secondary rounded">
+        <form class='form-group' method='POST' action="">
+            {{form.hidden_tag()}}
+            <h4>{{question_1}}</h4>
+            <div class='form-group'>
+            {{form.answer_1(class="form-control form-control-lg")}}
+            </div>
+            <br>
+            <h4>{{question_2}}</h4>
+            <div class='form-group'>
+            {{form.answer_2(class="form-control form-control-lg")}}
+            </div>
+            <br>
+            <h4>{{question_3}}</h4>
+            <div class='form-group'>
+            {{form.answer_3(class="form-control form-control-lg")}}
+            </div>
+            <br>
+            <h4>{{question_4}}</h4>
+            <div class='form-group'>
+            {{form.answer_4(class="form-control form-control-lg")}}
+            </div>
+            <br>
+            <h4>{{question_5}}</h4>
+            <div class='form-group'>
+            {{form.answer_5(class="form-control form-control-lg")}}
+            </div>
+            <br>
+            <div class='form-group d-grid gap-2 col-6 mx-auto'>
+            {{form.submit(class="btn btn-primary")}}
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

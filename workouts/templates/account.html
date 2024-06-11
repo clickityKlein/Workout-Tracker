@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+<h1>{{current_user.username}}'s Account</h1>
+</div>
+
+
+{% if get_flashed_messages()|length > 0 %}
+<br>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+{% for message in get_flashed_messages() %}
+    <strong>{{message}}</strong>
+{% endfor %}
+
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+</div>
+{% endif %}
+
+<br>
+
+<h3 style="display: flex; justify-content: center; align-items: center;">Update Account Information</h3>
+
+<div class="container">
+    <div id="outer" style="display: flex; justify-content: center;">
+    <div id="inner" style="width: 60%">
+    <form class="form-group p-3 mb-2 bg-body-secondary rounded" method="POST" action="" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        <div class='form-group'>
+        {{form.username.label(class="form-control-label")}}
+        {{form.username(class="form-control text-bg-light p-3")}}
+        </div>
+        <br>
+        <div class='form-group'>
+        {{form.email.label(class="form-control-label")}}
+        {{form.email(class="form-control text-bg-light p-3")}}
+        </div>
+        <br>
+        <div class='form-group'>
+        {{form.password.label(class="form-control-label")}}
+        {{form.password(class="form-control text-bg-light p-3")}}
+        </div>
+        <br>
+        <div class='form-group'>
+        {{form.pass_confirm.label(class="form-control-label")}}
+        {{form.pass_confirm(class="form-control text-bg-light p-3")}}
+        </div>
+        <br>
+        <div class='form-group' style="display: flex; justify-content: center; align-items: center;">
+        {{form.submit(class="btn btn-primary d-grid gap-2 col-6 mx-auto")}}
+        </div>
+    </form>
+    </div>
+    </div>
+</div>
+<br>
+
+<h3 style="display: flex; justify-content: center; align-items: center;">Recovery Questions</h3>
+
+<br>
+
+
+<div id="outer" style="display: flex; justify-content: center;">
+<div id="inner" style="width: 60%;">
+    {% if recovery_questions_set %}
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <a class="btn btn-info d-grid gap-2 col-6 mx-auto" href="{{url_for('recovery_questions.reset_recovery_questions')}}">Reset Recovery Questions</a>
+    </div>
+    {% else %}
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <a class="btn btn-info d-grid gap-2 col-6 mx-auto" href="{{url_for('recovery_questions.set_recovery_questions')}}">Set Recovery Questions</a>
+    </div>
+    {% endif %}
+
+</div>
+</div>
+
+
+{% endblock %}
+

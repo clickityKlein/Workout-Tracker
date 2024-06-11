@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Home</h1>
+    </div>
+    
+    <br>
+    
+    {% if current_user.is_authenticated %}
+        
+        <div id="outer" style="display: flex; justify-content: center;">
+        <div id="inner" style="width: 60%;">
+        <div class="form-group p-3 mb-2 bg-body-secondary rounded">
+            
+            <h3 style="display: flex; justify-content: center; align-items: center;">Your Data</h3>
+            
+            <br>
+            
+            <div class="row">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-primary" href="{{url_for('users.export_strength_workouts')}}">Export Strength Workouts</a>
+                <a class="btn btn-primary" href="{{url_for('strength_training.view_strength_workout_table', strength_user_id=current_user.id)}}">Detailed Strength Workouts</a>
+                <a class="btn btn-primary" href="{{url_for('strength_training_sub.view_strength_sub_workout_table', strength_user_id=current_user.id)}}">Summarized Strength Workouts</a>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-primary" href="{{url_for('users.export_cardio_workouts')}}">Export Cardio Workouts</a>
+                <a class="btn btn-primary" href="{{url_for('cardio_training.view_cardio_workout_table', cardio_user_id=current_user.id)}}">Detailed Cardio Workouts</a>
+                <a class="btn btn-primary" href="{{url_for('cardio_training_sub.view_cardio_sub_workout_table', cardio_user_id=current_user.id)}}">Summarized Cardio Workouts</a>
+            </div>
+            </div>
+
+        </div>  
+        </div>
+        </div>
+        
+        <br>
+        
+        <div id="outer" style="display: flex; justify-content: center;">
+        <div id="inner" style="width: 60%;">
+        <div class="form-group p-3 mb-2 bg-body-secondary rounded">
+            
+            <h3 style="display: flex; justify-content: center; align-items: center;">Create Workout</h3>
+            
+            <br>
+            
+            <div class="row">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-primary" href="{{url_for('strength_training_sub.create_strength_workout_sub')}}">Create Strength Workout</a>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-primary" href="{{url_for('cardio_training_sub.create_cardio_workout_sub')}}">Create Cardio Workout</a>
+            </div>
+            </div>
+
+        </div>  
+        </div>
+        </div>
+        
+        <br>        
+        
+        <div id="outer" style="display: flex; justify-content: center;">
+        <div id="inner" style="width: 60%;">
+        <div class="form-group p-3 mb-2 bg-body-secondary rounded">
+            
+            <h3 style="display: flex; justify-content: center; align-items: center;">Quick Links</h3>
+            
+            <br>
+            
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-primary" href="{{url_for('core.aggregate')}}">Aggregate Reports</a>
+                <a class="btn btn-primary" href="{{url_for('users.account')}}">Account</a>
+                <a class="btn btn-primary" href="{{url_for('core.info')}}">Instructions</a>
+                <a class="btn btn-danger" href="{{url_for('users.logout')}}">Log Out</a>
+            </div>
+
+        </div>  
+        </div>
+        </div>
+    
+    {% else %}
+    
+        <div id="outer" style="display: flex; justify-content: center;">
+        <div id="inner" style="width: 60%;">
+        <div class="form-group p-3 mb-2 bg-body-secondary rounded">
+            
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a class="btn btn-primary" href="{{url_for('users.login')}}">Log In</a>
+                <a class="btn btn-primary" href="{{url_for('users.register')}}">Create An Account</a>
+                <a class="btn btn-info" href="{{url_for('core.info')}}">Instructions</a>
+            </div>
+
+        </div>  
+        </div>
+        </div>
+    {% endif %}
+    
+    <br>
+    
+{% endblock %}

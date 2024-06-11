@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Summarized Aggregate Strength Data</h1>
+    </div>
+    
+    <br>
+    <div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Workout ID</th>
+                <th>User ID</th>
+                <th>Workout Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Exercise Count</th>
+                <th>Set Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exercise_set in strength_training_data %}
+            <tr>
+                <td><a href="{{url_for('strength_training.single_strength_workout', strength_workout_id=exercise_set.id, strength_user_id=exercise_set.user_id)}}">{{ exercise_set.id }}</a></td>
+                <td><a href="{{url_for('strength_training_sub.view_strength_sub_workout_table', strength_user_id=exercise_set.user_id)}}">{{  exercise_set.user_id }}</a></td>
+                <td>{{ exercise_set.workout_name }}</td>
+                <td>{{ exercise_set.date }}</td>
+                <td>{{ exercise_set.location }}</td>
+                <td>{{ exercise_set.exercise_count }}</td>
+                <td>{{ exercise_set.set_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
+
+<!-- Dynamic Table Options -->
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable();
+        });
+    </script>
+{% endblock %}

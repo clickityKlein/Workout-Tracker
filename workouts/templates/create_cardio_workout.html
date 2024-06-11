@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h3>Workout Name: {{workout_name}}</h3>
+    <h3>Date: {{date}}</h3>
+    <h3>Location: {{location}}</h3>
+    <h3>Exercises: {{exercise_count}}</h3>
+    <h3>Circuits: {{circuit_count}}</h3>
+    </div>
+
+    {% if get_flashed_messages()|length > 0 %}
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    
+    {% for message in get_flashed_messages() %}
+        <strong>{{message}}</strong>
+    {% endfor %}
+    
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <br>
+    
+    <div class="container">
+        <form class='form-group' method='POST'>
+            {{form.hidden_tag()}}
+            {% for circuit_row in range(circuit_count) %}
+            
+            <h3 style="display: flex; justify-content: center; align-items: center;">
+                Circuit Number: {{circuit_row+1}}
+            </h3>
+            {% for exercise_row in range(exercise_count) %}
+            <div class="p-3 mb-2 bg-body-secondary text-dark-emphasis rounded">
+                <div class="row g-3">
+                <h4>Exercise {{exercise_row+1}} | Circuit {{circuit_row+1}}</h4>
+                </div>
+                
+                <div class="row g-3">
+                <div class='form-group col'>
+                <label for="exercise" class="form-control-label">Exercise</label>
+                <input type="text" class="form-control text-bg-light p-3" id="exercise" value="Exercise {{exercise_row+1}}" name="exercise_{{circuit_row}}_{{exercise_row}}">
+                </div>
+            
+                <div class='form-group col'>
+                <label for="split" class="form-control-label">Split</label>
+                <input type="text" value="00:00:00" class="form-control text-bg-light p-3" id="split" name="split_{{circuit_row}}_{{exercise_row}}">
+                </div>
+                
+                <div class='form-group col'>
+                <label for="distance" class="form-control-label">Distance</label>
+                <input type="decimal" class="form-control text-bg-light p-3" id="distance" name="distance_{{circuit_row}}_{{exercise_row}}" value=0>
+                </div>
+            
+                <div class='form-group col'>
+                <label for="metric" class="form-control-label">Metric</label>
+                <select class="form-control form-select text-bg-light p-3" id="metric" name="metric_{{circuit_row}}_{{exercise_row}}">
+                    <option value="Other">Other</option>
+                    <option value="Imperial">Imperial</option>
+                    <option value="Metric">Metric</option>
+                </select>
+                </div>
+            
+                <div class='form-group col'>
+                <label for="circuit" class="form-control-label">Circuit</label>
+                <input type="number" class="form-control text-bg-light p-3" id="circuit" name="circuit_{{circuit_row}}_{{exercise_row}}" value={{circuit_row+1}}>
+                </div>
+            
+                <div class='form-group col'>
+                <label for="order_in_circuit" class="form-control-label">Order in Circuit</label>
+                <input type="number" class="form-control text-bg-light p-3" id="order_in_circuit" name="order_in_circuit_{{circuit_row}}_{{exercise_row}}" value={{exercise_row+1}}>
+                </div>
+            
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea class="form-control text-bg-light p-3" id="notes" style="height: 100px" name="notes_{{circuit_row}}_{{exercise_row}}"></textarea>
+                </div>
+                
+            </div>
+            {% endfor %}
+            {% endfor %}
+            
+            <br>
+            <div class="row g-3">
+            <div class='form-group d-grid gap-2 col-3 mx-auto'>
+            {{form.submit(class="btn btn-primary form-control-lg")}}
+            </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

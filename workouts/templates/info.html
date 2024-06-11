@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+<h1>Instructions</h1>
+</div>
+<br>
+
+<div class="container">
+<div id="outer" style="display: flex; justify-content: center;">
+<div id="inner" style="width: 60%;">
+<div class="p-3 mb-2 bg-body-secondary rounded">
+
+<h3>
+Welcome to Workout Tracker, a system designed around analytics and flexibility!
+Workout Tracker allows a user to be as specific as they'd like in tracking their data and
+includes the option to download csv files of workout data.
+</h3>
+<br>
+
+<h5>
+Getting Started
+</h5>
+<br>
+
+<div class="container">
+<ol>
+    <li>Create an Account (through sidebar or homepage)</li>
+    <li>Set Recovery Questions (through account page)</li>
+    <li>Start Logging Workouts!</li>
+</ol>
+</div>
+<br>
+
+<h5>
+Creating Cardio Workouts:
+</h5>
+<br>
+
+<div class="container">
+<ol>
+    <li>Select Create Cardio Workout (through sidebar or homepage)</li>
+    <li>Fill out the First Form:</li>
+    <ul>
+        <li>Workout Name: can be generic or specific, however you would like to track your data</li>
+        <li>Date: there is a calendar widget to aid in selection, don't worry about not logging a workout the day of</li>
+        <li>Location: can be generic or specific, however you would like to track your data</li>
+        <li>Number of Exercises:
+            <ul>
+                <li>Just went for a run? Enter 1!</li>
+                <li>Training for a triathlon? Entering 3 will allow you to track 3 separate cardio exercises for a single workout (i.e. did you run, cycle, and swim?)!</li>
+            </ul>
+        </li>
+        <li>Number of Circuits:
+            <ul>
+                <li>Just went for a run? Enter 1!</li>
+                <li>Doing some circuit training? Suppose you did 3 intervals of a certain exercise, enter 3.</li>
+            </ul>
+        </li>
+    </ul>
+    <li>Log Exercises and Circuits in the Second Form:
+    <ul>
+        <li>Exercise: can be generic or specific, however you would like to track your data</li>
+            <ul>
+                <li>Automatically populated with exercise numbering, but this can be overwritten.</li>
+                <li>Back to the triathlon example, if you specified 3, you could name the exercises "Run", "Swim", and "Bike".</li>
+            </ul>
+        <li>Split: time of the given exercise and circuit.</li>
+        <li>Distance: how far did you go?</li>
+        <li>Metric: how did you track the distance?</li>
+            <ul>
+                <li>Can choose either imperial, metric, or other for non-conformative styles of training</li>
+            </ul>
+        <li>Circuit: automatically populated, can be overwritten to best represent your workout</li>
+        <li>Order in Circuit: automatically populated, can be overwritten to best represent your workout</li>
+        <li>Notes: anything you'd like to mention for tracking your workouts!</li>
+    </ul>
+    </li>
+</ol>
+</div>
+<br>
+
+<h5>
+Creating Strength Workouts:
+</h5>
+<br>
+
+<div class="container">
+<ol>
+    <li>Select Create Strength Workout (through sidebar or homepage)</li>
+    <li>Fill out the First Form:</li>
+    <ul>
+        <li>Workout Name: can be generic or specific, however you would like to track your data</li>
+        <li>Date: there is a calendar widget to aid in selection, don't worry abuot not logging a workout the day of</li>
+        <li>Location: can be generic or specific, however you would like to track your data</li>
+        <li>Number of Exercises:
+            <ul>
+                <li>Just want to log some pushups? Enter 1!</li>
+                <li>Did you do pushups, pullups, and situps? Entering 3 will allow you to track 3 separate strength exercises for a single workout!</li>
+            </ul>
+        </li>
+        <li>Number of Sets:
+            <ul>
+                <li>Did you do 3 separate sets of bench press? Specify 3!</li>
+            </ul>
+        </li>
+    </ul>
+    <li>Log Exercises and Sets in the Second Form:
+    <ul>
+        <li>Exercise: can be generic or specific, however you would like to track your data</li>
+            <ul>
+                <li>Automatically populated with exercise numbering, but this can be overwritten.</li>
+                <li>Can specify exercises like "pushups", "squats", "benchpress", etc. here.</li>
+            </ul>
+        <li>Weight: Did you do curls with 20lbs? Enter 20.</li>
+            <ul>
+                <li>Can leave at 0 for body weight.</li>
+            </ul>
+        <li>Metric: choose between body weight, imperial, or metric.</li>
+        <li>Repetitions: how many reps did you do during this set?</li>
+        <li>Set Number: automatically populated, can be overwritten to best represent your workout</li>
+        <li>Order in Set: automatically populated, can be overwritten to best represent your workout</li>
+        <li>Notes: anything you'd like to mention for tracking your workouts!</li>
+    </ul>
+    </li>
+</ol>
+</div>
+<br>
+
+<h5>
+Data:
+</h5>
+<br>
+
+<div class="container">
+<ul>
+    <li>Using either the homepage or sidebar, Detailed and Summarized data can be accessed for your account
+    <ul>
+        <li>Detailed: every exercise from all sets/circuits</li>
+        <li>Summarized: line item for each workout</li>
+        <li>Single Workout View: Navigate through the tables to zero-in on a single workout view. If this is
+        your workout, you'll have the option to edit or delete this workout.
+        </li>
+        <li>Downloads are available for detailed and summarized data on the homepage.</li>
+    </ul>
+    </li>
+    <li>Using either the homepage or sidebar, navigate to the Aggregate Reports to view data across all users
+    <ul>
+        <li>Detailed: every exercice from all sets/circuits</li>
+        <li>Summarized: line item for each workout</li>
+        <li>Single Workout View: Navigate through the tables to zero-in on a single workout view. If this is
+        your workout, you'll have the option to edit or delete this workout.
+        </li>
+        <li>Downloads are available for detailed data on the aggregate page.</li>
+    </ul>
+    </li>
+</ul>
+</div>
+<br>
+
+
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

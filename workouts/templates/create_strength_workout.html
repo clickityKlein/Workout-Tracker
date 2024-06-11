@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h3>Workout Name: {{workout_name}}</h3>
+    <h3>Date: {{date}}</h3>
+    <h3>Exercises: {{exercise_count}}</h3>
+    <h3>Sets: {{set_count}}</h3>
+    </div>
+    
+    {% if get_flashed_messages()|length > 0 %}
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    
+    {% for message in get_flashed_messages() %}
+        <strong>{{message}}</strong>
+    {% endfor %}
+    
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <br>
+    
+    <div class="container">
+        <form class='form-group' method='POST'>
+            {{form.hidden_tag()}}
+            {% for set_row in range(set_count) %}
+            
+            <h3 style="display: flex; justify-content: center; align-items: center;">
+                Set Number: {{set_row+1}}
+            </h3>
+            
+            {% for exercise_row in range(exercise_count) %}
+            <div class="p-3 mb-2 bg-body-secondary text-dark-emphasis rounded">
+                <div class="row g-3">
+                <h4>Exercise {{exercise_row+1}} | Set {{set_row+1}}</h4>
+                </div>
+                
+                <div class="row g-3">
+                <div class='form-group col'>
+                <label for="exercise" class="form-control-label">Exercise</label>
+                <input type="text" class="form-control text-bg-light p-3" id="exercise" value="Exercise {{exercise_row+1}}" name="exercise_{{set_row}}_{{exercise_row}}">
+                </div>
+            
+                <div class='form-group col'>
+                <label for="weight" class="form-control-label">Weight</label>
+                <input type="decimal" class="form-control text-bg-light p-3" id="weight" name="weight_{{set_row}}_{{exercise_row}}" value=0>
+                </div>
+            
+                <div class='form-group col'>
+                <label for="metric" class="form-control-label">Metric</label>
+                <select class="form-control form-select text-bg-light p-3" id="metric" name="metric_{{set_row}}_{{exercise_row}}">
+                    <option value="Body Weight">Body Weight</option>
+                    <option value="Imperial">Imperial</option>
+                    <option value="Metric">Metric</option>
+                </select>
+                </div>
+            
+                <div class='form-group col'>
+                <label for="repetitions" class="form-control-label">Repetitions</label>
+                <input type="number" class="form-control text-bg-light p-3" id="repetitions" name="repetitions_{{set_row}}_{{exercise_row}}">
+                </div>
+            
+                <div class='form-group col'>
+                <label for="set_number" class="form-control-label">Set Number</label>
+                <input type="number" class="form-control text-bg-light p-3" id="set_number" name="set_number_{{set_row}}_{{exercise_row}}" value={{set_row+1}}>
+                </div>
+            
+                <div class='form-group col'>
+                <label for="order_in_set" class="form-control-label">Order In Set</label>
+                <input type="number" class="form-control text-bg-light p-3" id="order_in_set" name="order_in_set_{{set_row}}_{{exercise_row}}" value={{exercise_row+1}}>
+                </div>
+                </div>
+                <br>
+                <div class="form-floating form-group">
+                    <textarea class="form-control text-bg-light p-3" id="notes" style="height: 100px" name="notes_{{set_row}}_{{exercise_row}}"></textarea>
+                    <label for="notes">Notes:</label>
+                </div>
+                
+            </div>
+            {% endfor %}
+            {% endfor %}
+            
+            <br>
+            <div class="row g-3">
+            <div class='form-group d-grid gap-2 col-3 mx-auto'>
+            {{form.submit(class="btn btn-primary form-control-lg")}}
+            </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

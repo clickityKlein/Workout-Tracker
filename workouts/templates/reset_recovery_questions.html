@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Account Recovery</h1>
+    </div>
+
+    {% if get_flashed_messages()|length > 0 %}
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    
+    {% for message in get_flashed_messages() %}
+        <strong>{{message}}</strong>
+    {% endfor %}
+    
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <br>
+    <div class="container">
+        <form class='form-group' method='POST' action="">
+        {{form.hidden_tag()}}
+        <div class="p-3 mb-2 bg-body-secondary rounded">
+            <div class="form-group">
+            {{form.question_1.label(class="form-control-label")}}
+            {{form.question_1(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_1.label(class="form-control-label")}}
+            {{form.answer_1(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_1_confirm.label(class="form-control-label")}}
+            {{form.answer_1_confirm(class="form-control text-bg-light p-3")}}
+            </div>
+        </div>
+        <br>
+        
+        <div class="p-3 mb-2 bg-body-secondary rounded">
+            <div class="form-group">
+            {{form.question_2.label(class="form-control-label")}}
+            {{form.question_2(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_2.label(class="form-control-label")}}
+            {{form.answer_2(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_2_confirm.label(class="form-control-label")}}
+            {{form.answer_2_confirm(class="form-control text-bg-light p-3")}}
+            </div>
+        </div>
+        <br>
+        
+        <div class="p-3 mb-2 bg-body-secondary rounded">
+            <div class="form-group">
+            {{form.question_3.label(class="form-control-label")}}
+            {{form.question_3(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_3.label(class="form-control-label")}}
+            {{form.answer_3(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_3_confirm.label(class="form-control-label")}}
+            {{form.answer_3_confirm(class="form-control text-bg-light p-3")}}
+            </div>
+        </div>
+        <br>
+                
+        <div class="p-3 mb-2 bg-body-secondary rounded">
+            <div class="form-group">
+            {{form.question_4.label(class="form-control-label")}}
+            {{form.question_4(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_4.label(class="form-control-label")}}
+            {{form.answer_4(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_4_confirm.label(class="form-control-label")}}
+            {{form.answer_4_confirm(class="form-control text-bg-light p-3")}}
+            </div>
+        </div>
+        <br>
+        
+        <div class="p-3 mb-2 bg-body-secondary rounded">
+            <div class="form-group">
+            {{form.question_5.label(class="form-control-label")}}
+            {{form.question_5(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_5.label(class="form-control-label")}}
+            {{form.answer_5(class="form-control text-bg-light p-3")}}
+            </div>
+            <div class="form-group">
+            {{form.answer_5_confirm.label(class="form-control-label")}}
+            {{form.answer_5_confirm(class="form-control text-bg-light p-3")}}
+            </div>
+        </div>
+        <br>
+        
+            <div class='form-group d-grid gap-2 col-6 mx-auto' style="display: flex; justify-content: center; align-items: center;">
+            {{form.submit(class="btn btn-primary btn-lg")}}
+            </div>
+                  
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

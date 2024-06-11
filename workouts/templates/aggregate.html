@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h1>Aggregate Reports</h1>
+</div>
+
+<br>
+
+<div id="outer" style="display: flex; justify-content: center;">
+<div id="inner" style="width: 60%;">
+<div class="form-group p-3 mb-2 bg-body-secondary rounded">
+    
+    <h3 style="display: flex; justify-content: center; align-items: center;">View Data</h3>
+    <br>
+    <div class="row">
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="btn btn-primary" href="{{url_for('aggregate.detailed_strength_workout_table')}}">Detailed Strength Workouts</a>
+            <a class="btn btn-primary" href="{{url_for('aggregate.summarized_strength_workout_table')}}">Summarized Strength Workouts</a>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="btn btn-primary" href="{{url_for('aggregate.detailed_cardio_workout_table')}}">Detailed Cardio Workouts</a>
+            <a class="btn btn-primary" href="{{url_for('aggregate.summarized_cardio_workout_table')}}">Summarized Cardio Workouts</a>
+        </div>
+    </div>
+    
+</div>  
+</div>
+</div>
+
+<br>
+
+<div id="outer" style="display: flex; justify-content: center;">
+<div id="inner" style="width: 60%;">
+<div class="form-group p-3 mb-2 bg-body-secondary rounded">
+    
+    <h3 style="display: flex; justify-content: center; align-items: center;">Export Data</h3>
+    <h5 style="display: flex; justify-content: center; align-items: center;">(detailed versions only)</h5>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a class="btn btn-primary" href="{{url_for('aggregate.export_aggregate_strength_workouts')}}">Export Strength Workouts</a>
+        <a class="btn btn-primary" href="{{url_for('aggregate.export_aggregate_cardio_workouts')}}">Export Cardio Workouts</a>
+    </div>
+
+</div>  
+</div>
+</div>
+
+
+{% endblock %}
