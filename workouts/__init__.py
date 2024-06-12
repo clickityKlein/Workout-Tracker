@@ -4,17 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 from flask_login import LoginManager
-import config
+# import config
 
 app = Flask(__name__)
 
 def configure():
     load_dotenv()
 
-app.config['SECRET_KEY'] = config.get_secret_key()
+# app.config['SECRET_KEY'] = config.get_secret_key()
 
 ### database setup ###
-app.config['SQLALCHEMY_DATABASE_URI'] = config.get_db_url()
+# app.config['SQLALCHEMY_DATABASE_URI'] = config.get_db_url()
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
