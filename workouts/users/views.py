@@ -159,45 +159,57 @@ def clean_workouts():
     # get strength workouts
     main_strength_workouts = StrengthTraining.query.filter_by(user_id=current_user.id).all()
     sub_strength_workouts = StrengthTrainingSub.query.filter_by(user_id=current_user.id).all()
+    strength_update = False
     
     # get cardio workouts
     main_cardio_workouts = CardioTraining.query.filter_by(user_id=current_user.id).all()
     sub_cardio_workouts = CardioTrainingSub.query.filter_by(user_id=current_user.id).all()
+    cardio_update = False
     
     # strength cleaner
-    if main_strength_workouts:
-        main_workout_set = set()
-        for workout in main_strength_workouts:
-            main_workout_set.add(workout.sub_id)
-    
     if sub_strength_workouts:
         sub_workout_set = set()
         for workout in sub_strength_workouts:
             sub_workout_set.add(workout.id)
             
-    remove_workouts_set = sub_workout_set.difference(main_workout_set)
-    if len(remove_workouts_set) > 0:
-        for workout in remove_workouts_set:
-            remove_workout = StrengthTrainingSub.query.filter_by(user_id=current_user.id).filter_by(id=workout).all()
-            for remove_query in remove_workout:
-                db.session.delete(remove_query)
+        if main_strength_workouts:
+            main_workout_set = set()
+            for workout in main_strength_workouts:
+                main_workout_set.add(workout.sub_id)
+                
+        else:
+            main_workout_set = set()
+    
+        remove_workouts_set = sub_workout_set.difference(main_workout_set)
+        if len(remove_workouts_set) > 0:
+            for workout in remove_workouts_set:
+                remove_workout = StrengthTrainingSub.query.filter_by(user_id=current_user.id).filter_by(id=workout).all()
+                for remove_query in remove_workout:
+                    db.session.delete(remove_query)
+                    strength_update = True
                 
     # cardio cleaner
-    if main_cardio_workouts:
-        main_workout_set = set()
-        for workout in main_cardio_workouts:
-            main_workout_set.add(workout.sub_id)
-    
     if sub_cardio_workouts:
         sub_workout_set = set()
         for workout in sub_cardio_workouts:
             sub_workout_set.add(workout.id)
             
-    remove_workouts_set = sub_workout_set.difference(main_workout_set)
-    if len(remove_workouts_set) > 0:
-        for workout in remove_workouts_set:
-            remove_workout = CardioTrainingSub.query.filter_by(user_id=current_user.id).filter_by(id=workout).all()
-            for remove_query in remove_workout:
-                db.session.delete(remove_query)
-    
-    db.session.commit()
+        if main_cardio_workouts:
+            main_workout_set = set()
+            for workout in main_cardio_workouts:
+                main_workout_set.add(workout.sub_id)
+        
+        else:
+            main_workout_set = set()
+        
+                
+        remove_workouts_set = sub_workout_set.difference(main_workout_set)
+        if len(remove_workouts_set) > 0:
+            for workout in remove_workouts_set:
+                remove_workout = CardioTrainingSub.query.filter_by(user_id=current_user.id).filter_by(id=workout).all()
+                for remove_query in remove_workout:
+                    db.session.delete(remove_query)
+                    cardio_update = True
+        
+    if (strength_update) or (cardio_update):
+        db.session.commit()
