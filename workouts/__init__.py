@@ -4,19 +4,19 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 from flask_login import LoginManager
-# import config # removed for deployment
+# import config # comment out for deployment
 
 app = Flask(__name__)
 
 def configure():
     load_dotenv()
 
-# app.config['SECRET_KEY'] = config.get_secret_key() # changed for deployment
-app.config['SECRET_KEY'] = os.getenv('secret_key')
+# app.config['SECRET_KEY'] = config.get_secret_key() # comment out for deployment
+app.config['SECRET_KEY'] = os.getenv('secret_key') # deploy code
 
 ### database setup ###
-# app.config['SQLALCHEMY_DATABASE_URI'] = config.get_db_url() # changed for deployment
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('sqlalchemy_database_uri')
+# app.config['SQLALCHEMY_DATABASE_URI'] = config.get_db_url() # comment out for deployment
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('sqlalchemy_database_uri') # deploy code
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
