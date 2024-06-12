@@ -12,11 +12,11 @@ def configure():
     load_dotenv()
 
 # app.config['SECRET_KEY'] = config.get_secret_key() # changed for deployment
-app.config['SECRET_KEY'] = SECRET_KEY
+app.config['SECRET_KEY'] = os.getenv(SECRET_KEY)
 
 ### database setup ###
 # app.config['SQLALCHEMY_DATABASE_URI'] = config.get_db_url() # changed for deployment
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(SQLALCHEMY_DATABASE_URI)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
